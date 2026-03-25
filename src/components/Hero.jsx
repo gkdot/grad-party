@@ -47,7 +47,7 @@ export default function Hero() {
         className="flex justify-center px-6 mb-10"
       >
         <img
-          src="public/celebration.png"
+          src="./public/celebration.png"
           alt="Celebration"
           className="max-w-xl object-scale-down"
         />
