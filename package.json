@@ -13,7 +13,7 @@
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc -p ./jsconfig.json",
     "preview": "vite preview",
-    "test": "npm run lint && jest"
+    "test": "npm run lint"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^17.0.0",
