@@ -1,0 +1,23 @@
+{
+  "name": "SongRequest",
+  "type": "object",
+  "properties": {
+    "song_title": {
+      "type": "string",
+      "title": "Song Title"
+    },
+    "artist": {
+      "type": "string",
+      "title": "Artist"
+    },
+    "suggested_by": {
+      "type": "string",
+      "title": "Suggested By"
+    }
+  },
+  "required": [
+    "song_title",
+    "artist",
+    "suggested_by"
+  ]
+}

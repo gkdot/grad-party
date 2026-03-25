@@ -1,0 +1,15 @@
+[
+  {
+    "id": "2d82c4c4-28f6-4ae7-a412-b0a58edfbe4e",
+    "guest_name": "Gigi Kuffa",
+    "email": "gigikuffa@gmail.com",
+    "phone": "7036749396",
+    "attendance": "attending",
+    "plus_one": false,
+    "plus_one_name": "",
+    "dietary_restrictions": "other",
+    "dietary_notes": "No pork",
+    "message": "Congrats to me!",
+    "created_date": "2026-03-25T07:15:10.887Z"
+  }
+]
