@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Wine, UtensilsCrossed, Music, Camera, GlassWater, GraduationCap, Sparkles } from 'lucide-react';
+import { Wine, UtensilsCrossed, Camera, GlassWater, GraduationCap, Sparkles } from 'lucide-react';
 
 const events = [
   { time: '3:45 PM', title: 'Doors Open', description: 'Guests arrive and are welcomed with a glass of sparkling wine.', icon: GlassWater },
