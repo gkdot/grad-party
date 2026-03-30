@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-const TARGET_DATE = new Date('2026-06-15T18:00:00');
+const TARGET_DATE = new Date('2026-05-23T16:00:00');
 
 function useCountdown() {
   const [timeLeft, setTimeLeft] = useState(getTimeLeft());
@@ -47,7 +47,7 @@ export default function Hero() {
         className="flex justify-center px-6 mb-10"
       >
         <img
-          src="./public/celebration.png"
+          src="./celebration.png"
           alt="Celebration"
           className="max-w-xl object-scale-down"
         />
@@ -72,7 +72,7 @@ export default function Hero() {
         </h2>
 
         <p className="font-body text-xs tracking-[0.25em] uppercase text-muted-foreground mb-2">
-          May 23, 2026 · BVFRD Banquet Hall · 4:00 PM
+          May 23, 2026 · The BVFRD Banquet Hall · 4:00 PM
         </p>
 
         <OrnamentalDivider />

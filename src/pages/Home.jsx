@@ -13,8 +13,8 @@ export default function Home() {
       <Navbar />
       <Hero />
       <EventDetails />
-      <MenuSection />
-      <TimelineSection />
+      {/* <MenuSection />
+      <TimelineSection /> */}
       <FAQSection />
       <RSVPSection />
       <Footer />

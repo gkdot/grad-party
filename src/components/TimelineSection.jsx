@@ -2,13 +2,12 @@ import { motion } from 'framer-motion';
 import { Wine, UtensilsCrossed, Music, Camera, GlassWater, GraduationCap, Sparkles } from 'lucide-react';
 
 const events = [
-  { time: '5:45 PM', title: 'Doors Open', description: 'Guests arrive and are welcomed with a glass of sparkling wine.', icon: GlassWater },
-  { time: '6:00 PM', title: 'Cocktail Reception', description: 'Mingle and enjoy curated canapés and the signature Class of 2026 cocktail.', icon: Wine },
-  { time: '6:30 PM', title: 'Champagne Toast', description: 'A celebratory toast to mark the achievement of our graduate.', icon: Sparkles },
-  { time: '7:00 PM', title: 'Dinner is Served', description: 'Take your seats for a three-course dinner prepared by our culinary team.', icon: UtensilsCrossed },
-  { time: '8:00 PM', title: 'Speeches & Toasts', description: "Heartfelt words from family and friends honoring the graduate's journey.", icon: GraduationCap },
-  { time: '8:30 PM', title: 'Photo Booth Opens', description: 'Strike a pose with graduation-themed props and take home a memento.', icon: Camera },
-  { time: '9:00 PM', title: 'Dancing Begins', description: 'The DJ takes the floor — time to celebrate on the dance floor until 11 PM.', icon: Music },
+  { time: '3:45 PM', title: 'Doors Open', description: 'Guests arrive and are welcomed with a glass of sparkling wine.', icon: GlassWater },
+  { time: '4:00 PM', title: 'Cocktail Reception', description: 'Mingle and enjoy curated canapés and the signature Class of 2026 cocktail.', icon: Wine },
+  { time: '4:45 PM', title: 'Champagne Toast', description: 'A celebratory toast to mark the achievement of our graduate.', icon: Sparkles },
+  { time: '5:00 PM', title: 'Dinner is Served', description: 'Take your seats for a three-course dinner prepared by our culinary team.', icon: UtensilsCrossed },
+  { time: '7:00 PM', title: 'Speeches & Toasts', description: "Heartfelt words from family and friends honoring the graduate's journey.", icon: GraduationCap },
+  { time: '7:30 PM', title: 'Photo Booth Opens', description: 'Strike a pose with graduation-themed props and take home a memento.', icon: Camera },
 ];
 
 const SectionDivider = ({ title }) => (

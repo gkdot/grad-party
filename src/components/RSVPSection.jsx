@@ -71,7 +71,7 @@ export default function RSVPSection() {
             RSVP
           </h2>
           <p className="font-serif text-center text-muted-foreground italic mb-14">
-            Please respond by June 1, 2026
+            Please respond by May 9, 2026
           </p>
         </motion.div>
 
