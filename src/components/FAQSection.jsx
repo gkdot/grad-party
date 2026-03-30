@@ -9,28 +9,28 @@ import {
 const faqs = [
   {
     question: 'What is the dress code?',
-    answer: 'The dress code is Semi-Formal / Cocktail Attire. Think elegant but comfortable — suits, dress shirts, cocktail dresses, or dressy separates. Our color theme is gold and navy, so feel free to incorporate those colors! Please avoid jeans, sneakers, or overly casual wear.',
+    answer: 'The dress code is Semi-Formal, otherwise known as Cocktail Attire. In other words, elegant but comfortable. For men, this could be a suit, a jacket or a button-up shirt and a tie with dress paints. For women, this could be a longer cocktail dress or dressy separates, like a blouse with dress pants.',
   },
   {
     question: 'Is there parking available?',
-    answer: 'Yes! The Grand Ballroom offers complimentary valet parking for all guests. There is also a self-park garage adjacent to the venue. We recommend arriving 15 minutes early.',
+    answer: 'Yes! The Banquet Hall offers a large self-park lot adjacent to the venue. There is other parking for overflow nearby, if needed. We recommend arriving early if you want to secure parking close to the entrance.',
   },
   {
-    question: 'Can I bring a plus one?',
-    answer: 'Absolutely! When filling out the RSVP form, simply indicate that you\'ll be bringing a guest and provide their name.',
+    question: 'Can I bring guests?',
+    answer: 'Absolutely! When filling out the RSVP form, simply indicate that you\'ll be bringing a guest and provide their name(s).',
   },
   {
     question: 'Will there be accommodations for dietary restrictions?',
-    answer: 'Yes, we\'re happy to accommodate vegetarian, vegan, gluten-free, halal, and kosher options. Please indicate your dietary requirements on the RSVP form.',
+    answer: 'Yes, we\'re happy to accommodate vegetarian, vegan, and gluten-free options. Please indicate your dietary requirements on the RSVP form and reach out as well if this is a medical necessity.',
   },
   {
     question: 'What time should I arrive?',
     answer: 'Doors open at 5:45 PM with the cocktail reception starting at 6:00 PM. We\'ll have a champagne toast at 6:30 PM, so we recommend arriving on time!',
   },
-  {
-    question: 'Will there be music and dancing?',
-    answer: 'Yes! We have a live DJ starting after dinner around 8:30 PM. The dance floor will be open until 11:00 PM, plus a photo booth with graduation-themed props.',
-  },
+  // {
+  //   question: 'Will there be music and dancing?',
+  //   answer: 'Yes! We have a live DJ starting after dinner around 8:30 PM. The dance floor will be open until 11:00 PM, plus a photo booth with graduation-themed props.',
+  // },
   {
     question: 'When is the RSVP deadline?',
     answer: 'Please RSVP by May 9, 2026 so we can finalize the guest count and seating arrangements.',
