@@ -7,8 +7,6 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import dotenv from 'dotenv';
 
-const API_BASE_URL = process.env.VITE_API_URL;
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -24,10 +22,11 @@ const RSVP_FILE = path.join(DATA_DIR, 'rsvps.json');
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://gkdot.github.io"],
+    origin: ['http://localhost:5173', 'https://gkdot.github.io'],
     credentials: true,
   })
 );
+
 app.use(express.json());
 app.use(cookieParser());
 
@@ -62,7 +61,7 @@ function requireAdmin(req, res, next) {
   next();
 }
 
-app.get('/api/health', requireAdmin, (_req, res) => {
+app.get('/api/health', (_req, res) => {
   res.json({ ok: true });
 });
 
@@ -115,9 +114,6 @@ app.delete('/api/rsvps/:id', requireAdmin, async (req, res) => {
   res.json({ success: true });
 });
 
-// Temporary local auth stub.
-// Make yourself admin by setting a cookie in browser devtools if you want,
-// or just return admin unconditionally while developing.
 app.post('/api/admin/login', (req, res) => {
   const { password } = req.body || {};
 
@@ -133,22 +129,29 @@ app.post('/api/admin/login', (req, res) => {
     httpOnly: true,
     sameSite: 'none',
     secure: true,
-    maxAge: 1000 * 60 * 60 * 8, // 8 hours
+    maxAge: 1000 * 60 * 60 * 8,
+    path: '/',
   });
 
   res.json({ success: true });
 });
 
 app.post('/api/admin/logout', (_req, res) => {
-  res.clearCookie('admin_access');
+  res.clearCookie('admin_access', {
+    httpOnly: true,
+    sameSite: 'none',
+    secure: true,
+    path: '/',
+  });
+
   res.json({ success: true });
 });
 
-app.get("/api/admin/session", (req, res) => {
-  const authenticated = req.cookies?.admin_access === "granted";
+app.get('/api/admin/session', (req, res) => {
+  const authenticated = req.cookies?.admin_access === 'granted';
   res.json({ authenticated });
 });
 
 app.listen(PORT, () => {
-  console.log(`Local backend running on http://localhost:${PORT}`);
+  console.log(`Backend running on port ${PORT}`);
 });
