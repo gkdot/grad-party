@@ -17,12 +17,13 @@ console.log('ADMIN_PAGE_PASSWORD loaded:', Boolean(process.env.ADMIN_PAGE_PASSWO
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 const DATA_DIR = path.join(__dirname, 'data');
 const RSVP_FILE = path.join(DATA_DIR, 'rsvps.json');
 
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: API_BASE_URL,
     credentials: true,
   })
 );
