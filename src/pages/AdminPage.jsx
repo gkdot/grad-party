@@ -18,13 +18,13 @@ export default function AdminPage() {
 
   useEffect(() => {
     let active = true;
-        
+
     const checkSession = async () => {
       try {
         const data = await api.admin.session();
         if (!active) return;
-        setAuthorized(Boolean(data.authorized));
-      } catch {
+        setAuthorized(Boolean(data.authenticated));
+      } catch (error) {
         console.error("Admin session check failed:", error);
         if (!active) return;
         setAuthorized(false);
@@ -32,6 +32,8 @@ export default function AdminPage() {
         if (active) setCheckingAuth(false);
       }
     };
+
+    checkSession();
 
     return () => {
       active = false;
@@ -59,13 +61,18 @@ export default function AdminPage() {
   const handleUnlock = async (e) => {
     e.preventDefault();
     setError('');
+    setCheckingAuth(true);
 
     try {
       await api.admin.login(password);
-      setAuthorized(true);
+      const data = await api.admin.session();
+      setAuthorized(Boolean(data.authenticated));
       setPassword('');
     } catch (err) {
+      setAuthorized(false);
       setError(err.message || 'Incorrect password.');
+    } finally {
+      setCheckingAuth(false);
     }
   };
 
