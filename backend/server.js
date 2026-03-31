@@ -7,6 +7,8 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import dotenv from 'dotenv';
 
+const API_BASE_URL = process.env.VITE_API_URL;
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -17,13 +19,12 @@ console.log('ADMIN_PAGE_PASSWORD loaded:', Boolean(process.env.ADMIN_PAGE_PASSWO
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const API_BASE_URL = import.meta.env.VITE_API_URL;
 const DATA_DIR = path.join(__dirname, 'data');
 const RSVP_FILE = path.join(DATA_DIR, 'rsvps.json');
 
 app.use(
   cors({
-    origin: API_BASE_URL,
+    origin: ["http://localhost:5173", "https://gkdot.github.io"],
     credentials: true,
   })
 );
@@ -130,8 +131,8 @@ app.post('/api/admin/login', (req, res) => {
 
   res.cookie('admin_access', 'granted', {
     httpOnly: true,
-    sameSite: 'lax',
-    secure: false, // keep false for local dev over http
+    sameSite: 'none',
+    secure: true,
     maxAge: 1000 * 60 * 60 * 8, // 8 hours
   });
 
@@ -143,8 +144,9 @@ app.post('/api/admin/logout', (_req, res) => {
   res.json({ success: true });
 });
 
-app.get('/api/admin/session', requireAdmin, (req, res) => {
-  res.json({ authorized: isAdminAuthorized(req) });
+app.get("/api/admin/session", (req, res) => {
+  const authenticated = req.cookies?.admin_access === "granted";
+  res.json({ authenticated });
 });
 
 app.listen(PORT, () => {

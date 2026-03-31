@@ -17,19 +17,26 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    checkSession();
-  }, []);
+    let active = true;
+        
+    const checkSession = async () => {
+      try {
+        const data = await api.admin.session();
+        if (!active) return;
+        setAuthorized(Boolean(data.authorized));
+      } catch {
+        console.error("Admin session check failed:", error);
+        if (!active) return;
+        setAuthorized(false);
+      } finally {
+        if (active) setCheckingAuth(false);
+      }
+    };
 
-  const checkSession = async () => {
-    try {
-      const data = await api.admin.session();
-      setAuthorized(Boolean(data.authorized));
-    } catch {
-      setAuthorized(false);
-    } finally {
-      setCheckingAuth(false);
-    }
-  };
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const fetchRSVPs = async () => {
     setLoading(true);
