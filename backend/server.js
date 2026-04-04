@@ -7,6 +7,8 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import dotenv from 'dotenv';
 
+const ADMIN_SESSION_TOKEN = process.env.ADMIN_SESSION_TOKEN || 'change-this-token';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -51,7 +53,12 @@ async function writeRsvps(items) {
 }
 
 function isAdminAuthorized(req) {
-  return req.cookies?.admin_access === 'granted';
+  const authHeader = req.headers.authorization || '';
+  const token = authHeader.startsWith('Bearer ')
+    ? authHeader.slice('Bearer '.length)
+    : null;
+
+  return token === ADMIN_SESSION_TOKEN;
 }
 
 function requireAdmin(req, res, next) {
@@ -125,30 +132,18 @@ app.post('/api/admin/login', (req, res) => {
     return res.status(401).json({ message: 'Incorrect password.' });
   }
 
-  res.cookie('admin_access', 'granted', {
-    httpOnly: true,
-    sameSite: 'none',
-    secure: true,
-    maxAge: 1000 * 60 * 60 * 8,
-    path: '/',
+  res.json({
+    success: true,
+    token: ADMIN_SESSION_TOKEN,
   });
-
-  res.json({ success: true });
 });
 
 app.post('/api/admin/logout', (_req, res) => {
-  res.clearCookie('admin_access', {
-    httpOnly: true,
-    sameSite: 'none',
-    secure: true,
-    path: '/',
-  });
-
   res.json({ success: true });
 });
 
 app.get('/api/admin/session', (req, res) => {
-  const authenticated = req.cookies?.admin_access === 'granted';
+  const authenticated = isAdminAuthorized(req);
   res.json({ authenticated });
 });
 
