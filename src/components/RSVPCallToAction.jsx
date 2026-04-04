@@ -23,7 +23,7 @@ export default function RSVPCallToAction() {
           Don't Miss Out!
         </h2>
         <p className="font-body text-white/60 mb-10 text-lg">
-          RSVP by May 9, 2026 to secure your spot at the celebration of the year.
+          RSVP by May 16, 2026 to secure your spot at the celebration of the year.
         </p>
         <Link to="/rsvp">
           <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-body text-base px-10 py-6 rounded-full shadow-lg shadow-accent/25 transition-all hover:shadow-xl hover:scale-105">

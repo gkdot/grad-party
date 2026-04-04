@@ -33,7 +33,7 @@ const faqs = [
   // },
   {
     question: 'When is the RSVP deadline?',
-    answer: 'Please RSVP by May 9, 2026 so we can finalize the guest count and seating arrangements.',
+    answer: 'Please RSVP by May 16, 2026 so we can finalize the guest count and seating arrangements.',
   },
 ];
 
