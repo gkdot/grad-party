@@ -49,7 +49,7 @@ function App() {
   return (
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>
-        <Router basename="/grad-party">
+        <Router basename="/">
           <AuthenticatedApp />
         </Router>
         <Toaster />
