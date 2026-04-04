@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     question: 'What time should I arrive?',
-    answer: 'Doors open at 5:45 PM with the cocktail reception starting at 6:00 PM. We\'ll have a champagne toast at 6:30 PM, so we recommend arriving on time!',
+    answer: 'Doors open at 3:45 PM with the cocktail reception starting at 4:00 PM. We\'ll have a champagne toast at 5:30 PM, so we recommend arriving on time!',
   },
   // {
   //   question: 'Will there be music and dancing?',
