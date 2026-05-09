@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 40 30% 95%;
+    --card: 0 0% 6%;
+    --card-foreground: 40 30% 95%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 40 30% 95%;
+    --primary: 38 47% 58%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 40 30% 95%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 40 10% 60%;
+    --accent: 38 47% 58%;
+    --accent-foreground: 0 0% 4%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 40 30% 95%;
+    --border: 38 20% 25%;
+    --input: 0 0% 12%;
+    --ring: 38 47% 58%;
+    --radius: 0px;
+    --brass: #CBA35C;
+    --obsidian: #0A0A0B;
+    --parchment: #F2EFE9;
+    --laurel: #4A5D4E;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 40 30% 95%;
+    --card: 0 0% 6%;
+    --card-foreground: 40 30% 95%;
+    --primary: 38 47% 58%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 40 30% 95%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 40 10% 60%;
+    --accent: 38 47% 58%;
+    --accent-foreground: 0 0% 4%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 40 30% 95%;
+    --border: 38 20% 25%;
+    --input: 0 0% 12%;
+    --ring: 38 47% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #0A0A0B;
+    color: #F2EFE9;
+    cursor: none;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Cormorant Garamond', serif;
+  }
+}
+
+/* Custom cursor */
+.custom-cursor {
+  position: fixed;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #CBA35C;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
+  mix-blend-mode: difference;
+}
+
+.custom-cursor.expanded {
+  width: 36px;
+  height: 36px;
+}
+
+/* Hairline rules */
+.hairline {
+  border-color: rgba(203, 163, 92, 0.3);
+  border-width: 0.5px;
+}
+
+/* Brass underline inputs */
+.brass-input {
+  background: transparent;
+  border: none;
+  border-bottom: 0.5px solid #CBA35C;
+  color: #F2EFE9;
+  padding: 12px 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.brass-input:focus {
+  border-bottom-color: #F2EFE9;
+}
+
+.brass-input::placeholder {
+  color: rgba(242, 239, 233, 0.3);
+  letter-spacing: 0.1em;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+/* Scroll thread */
+.scroll-thread {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 0.5px;
+  background: linear-gradient(to bottom, transparent, #CBA35C, transparent);
+  z-index: 100;
+  transition: height 0.1s linear;
+}
+
+/* Letter tracking animation */
+@keyframes trackOut {
+  from { letter-spacing: -0.02em; opacity: 0; }
+  to { letter-spacing: 0.08em; opacity: 1; }
+}
+
+.track-in {
+  animation: trackOut 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Pulse animation for scroll indicator */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(4px); }
+}
+
+.pulse-slow {
+  animation: pulse-slow 2s ease-in-out infinite;
+}
+
+/* Scroll dot nav */
+.nav-dot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.nav-dot-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #CBA35C;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+}
+
+.nav-dot:hover .nav-dot-label {
+  opacity: 1;
+}
+
+/* Certificate reveal animation */
+@keyframes certificateReveal {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.certificate-reveal {
+  animation: certificateReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Section fade in */
+@keyframes sectionFadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-section {
+  opacity: 0;
+}
+
+.fade-in-section.visible {
+  animation: sectionFadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

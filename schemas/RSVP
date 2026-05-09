@@ -1,0 +1,36 @@
+{
+  "name": "RSVP",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Guest full name"
+    },
+    "email": {
+      "type": "string",
+      "description": "Guest email address"
+    },
+    "guests": {
+      "type": "number",
+      "description": "Number of guests attending",
+      "default": 1
+    },
+    "dietary": {
+      "type": "string",
+      "description": "Dietary restrictions or notes"
+    },
+    "message": {
+      "type": "string",
+      "description": "Personal message to the graduate"
+    },
+    "attending": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the guest is attending"
+    }
+  },
+  "required": [
+    "name",
+    "email"
+  ]
+}
