@@ -4,22 +4,22 @@ const courses = [
   {
     course: "Cocktail Hour",
     title: "Passed Bites",
-    items: ["Oyster with champagne mignonette", "Truffle blini with crème fraîche", "Fig & prosciutto crostini", "Burrata crostini, heirloom tomato"],
+    items: ["Sambusa, spiced lentil & herb filling", "Tibs skewer, awaze dipping sauce", "Fig & honey crostini, whipped feta", "Injera blini, berbere-spiced tomato"],
   },
   {
     course: "Dinner",
     title: "The Entrée",
-    items: ["Dry-aged prime filet, bordelaise reduction", "Pan-seared halibut, beurre blanc & capers", "Wild mushroom risotto (vegetarian)", "Roasted fingerling potatoes, herb butter"],
+    items: ["Spiced lamb tibs, herb jus", "Pan-seared salmon, niter kibbeh & capers", "Misir wot, red lentil & berbere (vegetarian)", "Roasted fingerling potatoes, spiced herb butter"],
   },
   {
     course: "Dessert",
     title: "Sweet Conclusion",
-    items: ["Dark chocolate tart, edible gold leaf", "Crème brûlée, Madagascar vanilla", "Petit fours & mignardises", "Seasonal fruit arrangement"],
+    items: ["Honey cake, cardamom cream", "Crème brûlée, Ethiopian coffee essence", "Baklava & spiced petit fours", "Seasonal fruit arrangement, rose water"],
   },
   {
     course: "Beverages",
     title: "The Bar",
-    items: ["Signature champagne toast on arrival", "Curated wine selection — red, white & rosé", "Craft cocktails & spirit service", "Still & sparkling water, soft beverages"],
+    items: ["Signature tej welcome toast on arrival", "Curated wine selection: red, white & rosé", "Craft cocktails & spirit service", "Still & sparkling water, Ethiopian coffee service"],
   },
 ];
 

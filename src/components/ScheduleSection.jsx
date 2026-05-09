@@ -1,12 +1,13 @@
 import { useEffect, useRef } from "react";
 
 const events = [
-  { time: "5:30 PM", title: "Arrival & Reception", desc: "Guests are welcomed with cocktails in the foyer. Photography begins.", location: "The Grand Foyer" },
-  { time: "6:00 PM", title: "Commencement Address", desc: "A reflective address honoring the journey and the road ahead.", location: "Main Hall" },
-  { time: "6:45 PM", title: "Dinner Service", desc: "A curated multi-course dinner is served in the banquet hall.", location: "The Banquet Hall" },
-  { time: "8:30 PM", title: "Toasts & Tributes", desc: "Family and friends offer their words of celebration and encouragement.", location: "Main Hall" },
-  { time: "9:00 PM", title: "Dancing & Revelry", desc: "The evening opens to music, dancing, and lasting memories.", location: "The Garden Terrace" },
-  { time: "11:30 PM", title: "Farewell", desc: "The evening draws to a graceful close. Safe travels.", location: "Grand Entrance" },
+  { time: "4:00 PM", title: "Doors Open", desc: "Guests arrive, snack on appetizers, and mingle. A long, relaxed welcome." },
+  { time: "5:30 PM", title: "Dinner Served", desc: "Guests are seated and food is ready to serve. Accompanied by low, vibrant jazz." },
+  { time: "6:45 PM", title: "Toasts & Cake", desc: "Heartfelt speeches from family and friends, closing with the graduate. Cake is cut immediately after." },
+  { time: "7:15 PM", title: "Dessert & Late Bites", desc: "Cake circulates and a light snack spread goes out as guests transition out of dinner mode." },
+  { time: "7:30 PM", title: "Dancing Opens", desc: "Music shifts energy and floor opens for the rest of the night." },
+  { time: "9:45 PM", title: "Last Song & Send-Off", desc: "A big closer gets everyone on the floor one final time, followed by a warm thank-you from the graduate." },
+  { time: "10:00 PM", title: "Farewell", desc: "The evening draws to a close. Safe travels home!", },
 ];
 
 export default function ScheduleSection() {

@@ -17,11 +17,11 @@ export default function DressCodeSection() {
 
   return (
     <section id="dresscode" className="py-40 px-8 md:px-20 max-w-6xl mx-auto" ref={sectionRef}>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-stretch">
         {/* Image */}
         <div className="relative">
           <div
-            className="w-full aspect-[3/4] bg-cover bg-center"
+            className="w-full h-full bg-cover bg-center"
             style={{
               backgroundImage:
                 "url('https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=800&q=80')",
@@ -54,22 +54,30 @@ export default function DressCodeSection() {
             className="font-sans text-parchment/60 text-sm mb-12"
             style={{ lineHeight: "1.9" }}
           >
-            We invite our guests to celebrate with sophistication and ease. Cocktail attire strikes the perfect balance — polished, stylish, and fitting for an evening of refined celebration.
+            We invite our guests to celebrate this momentous occassion with us on a warm spring evening. We recommend cocktail attire 
+            for an evening of fun and celebration.
           </p>
 
           <div className="space-y-8">
             {[
               {
                 label: "Gentlemen",
-                detail: "Dark suit or blazer with dress trousers. A tie is encouraged but not required. Polished shoes and refined accessories.",
+                detail: "A suit, blazer, sport coat, or dress shirt with trousers. Chinos or dress pants both work. Tie, pocket square,\
+                or neither are all welcome.",
               },
               {
                 label: "Ladies",
-                detail: "Cocktail dress, elegant midi, or a tailored suit. Knee to midi length preferred. Statement jewelry is welcomed.",
+                detail: "Cocktail dress, elegant midi, wrap dress, tailored jumpsuit, or a dressy two-piece set. Knee to midi length\
+                preferred, floor length optional.",
+              },
+              {
+                label: "Traditional Cultural Wear",
+                detail: "Habesha kemis, netela, kuta, or other traditional dress is warmly celebrated and equally honored. Guests are encouraged\
+                to wear cultural attire with pride.",
               },
               {
                 label: "Palette Guidance",
-                detail: "Black, champagne, deep navy, rich jewel tones. Avoid casual wear, distressed fabrics, or overly bright prints.",
+                detail: "Rich jewel tones, warm earth tones, champagne, deep navy, classic black.",
               },
             ].map((item, i) => (
               <div key={i} className="border-t pt-6" style={{ borderColor: "rgba(203,163,92,0.15)" }}>

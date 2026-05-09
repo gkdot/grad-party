@@ -2,28 +2,40 @@ import { useState, useEffect, useRef } from "react";
 
 const faqs = [
   {
-    q: "Is this event open to plus-ones?",
-    a: "Each invited guest is welcome to bring one additional companion. Please indicate the total number of attendees in your RSVP so we may prepare accordingly.",
+    q: "What is the dress code?",
+    a: "Cocktail attire is recommended. Traditional cultural dress is warmly celebrated. Please refer to the Attire section for full guidance.",
+  },
+  {
+    q: "What time should I arrive?",
+    a: "Please refer to the schedule above for exact timing. We recommend arriving early to allow time for parking, greeting fellow guests, and being seated comfortably before the celebration begins.",
+  },
+  {
+    q: "Is there parking available?",
+    a: "Yes. The Banquet Hall offers a large self-park lot adjacent to the venue. There is other parking for overflow nearby, if needed. We recommend arriving early if you want to secure parking close to the entrance.",
+  },
+  {
+    q: "Can I bring a plus one?",
+    a: "Yes. When filling out the RSVP form, simply indicate that you\'ll be bringing a guest and provide their name(s).",
+  },
+  {
+    q: "Will there be accommodations for dietary restrictions?",
+    a: "Yes, we\'re happy to accommodate vegetarian, vegan, and gluten-free options. Please indicate your dietary requirements on the RSVP form and reach out as well if this is a medical necessity.",
+  },
+  {
+    q: "Will there be music and dancing?",
+    a: "Yes! the evening will feature a curated playlist to celebrate this milestone. Dancing is absolutely encouraged and we hope you will join us on the floor.",
+  },
+  {
+    q: "When is the RSVP deadline?",
+    a: "We kindly request your confirmation no later than May 16th, 2026, so that we may finalize arrangements promptly.",
   },
   {
     q: "Where is the event being held?",
-    a: "The celebration will take place at The Grand Hall, 1 University Avenue. Valet parking will be available from 5:00 PM. Rideshare drop-off is at the East Entrance.",
-  },
-  {
-    q: "What is the RSVP deadline?",
-    a: "We kindly request your confirmation no later than May 31st, 2025, so that we may finalize arrangements with our catering team.",
-  },
-  {
-    q: "Will there be a vegetarian or vegan option?",
-    a: "Absolutely. Our culinary team has prepared thoughtful alternatives for all dietary needs. Please indicate your requirements in the RSVP form.",
+    a: "The celebration will take place at The BVFRD Banquet Hall, 9501 Old Burke Lake Road.",
   },
   {
     q: "Is the venue accessible?",
-    a: "Yes. The Grand Hall is fully accessible, with dedicated parking, elevator access, and staff on hand to assist guests with mobility needs.",
-  },
-  {
-    q: "Can I bring children?",
-    a: "This is an intimate adult evening celebration. We ask that arrangements be made for children, so that all guests may enjoy the evening fully.",
+    a: "Yes. The Banquet Hall is fully handicapped accessible as a single-story, ground-level facility with easy entrance and accessible bathrooms.",
   },
 ];
 

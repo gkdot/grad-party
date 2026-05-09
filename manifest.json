@@ -1,0 +1,8 @@
+{
+  "name": "gigikuffa.me",
+  "short_name": "gigikuffa",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#000000"
+}

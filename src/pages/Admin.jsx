@@ -91,6 +91,7 @@ export default function Admin() {
       email: rsvp.email || "",
       guests: String(rsvp.guests || 1),
       dietary: rsvp.dietary || "",
+      location: rsvp.location || "",
       message: rsvp.message || "",
     });
     setDeletingId(null);
@@ -104,6 +105,7 @@ export default function Admin() {
         email: editForm.email,
         guests: parseInt(editForm.guests) || 1,
         dietary: editForm.dietary,
+        location: editForm.location,
         message: editForm.message,
       };
       await rsvpAPI.update(id, updated);
@@ -239,7 +241,8 @@ export default function Admin() {
               { label: "Email", col: "span 2" },
               { label: "Guests", col: "span 1" },
               { label: "Dietary", col: "span 1" },
-              { label: "Message", col: "span 3" },
+              { label: "Location", col: "span 1" },
+              { label: "Message", col: "span 2" },
               { label: "Date", col: "span 1" },
               { label: "", col: "span 2" },
             ].map(({ label, col }) => (
@@ -319,8 +322,19 @@ export default function Admin() {
                     )}
                   </div>
 
+                  {/* Location */}
+                  <div style={{ gridColumn: "span 1" }}>
+                    {isEditing ? (
+                      <input style={inlineInput} value={editForm.location} onChange={(e) => setEditForm({ ...editForm, location: e.target.value })} />
+                    ) : (
+                      <p style={{ color: "rgba(242,239,233,0.4)", fontSize: "12px", lineHeight: "1.5" }}>
+                        {rsvp.location || <span style={{ opacity: 0.3 }}>—</span>}
+                      </p>
+                    )}
+                  </div>
+
                   {/* Message */}
-                  <div style={{ gridColumn: "span 3" }}>
+                  <div style={{ gridColumn: "span 2" }}>
                     {isEditing ? (
                       <input style={inlineInput} value={editForm.message} onChange={(e) => setEditForm({ ...editForm, message: e.target.value })} />
                     ) : (

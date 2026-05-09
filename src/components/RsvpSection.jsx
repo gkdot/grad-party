@@ -3,7 +3,7 @@ import emailjs from "@emailjs/browser";
 import { rsvpAPI } from "@/api/firestore";
 
 export default function RsvpSection() {
-  const [form, setForm] = useState({ name: "", email: "", guests: "1", dietary: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", guests: "1", dietary: "", location: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -31,6 +31,7 @@ export default function RsvpSection() {
       email: form.email,
       guests: parseInt(form.guests) || 1,
       dietary: form.dietary,
+      location: form.location,
       message: form.message,
       attending: true,
     });
@@ -97,6 +98,9 @@ export default function RsvpSection() {
               >
                 RSVP
               </h2>
+              <p className="font-sans text-brass tracking-[0.35em] text-xs uppercase mt-4 mb-12">
+                By May 16th, 2026
+              </p>
               <div style={{ width: "40px", height: "0.5px", backgroundColor: "#CBA35C", margin: "24px auto 0" }} />
             </div>
 
@@ -149,6 +153,16 @@ export default function RsvpSection() {
                     onChange={(e) => setForm({ ...form, dietary: e.target.value })}
                   />
                 </div>
+              </div>
+
+              <div>
+                <label style={labelStyle}>Where are you coming from?</label>
+                <input
+                  style={inputStyle}
+                  placeholder="City, state, or country"
+                  value={form.location}
+                  onChange={(e) => setForm({ ...form, location: e.target.value })}
+                />
               </div>
 
               <div>
