@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 export default function CustomCursor() {
   const [pos, setPos] = useState({ x: -100, y: -100 });
   const [expanded, setExpanded] = useState(false);
+  const isMobile = typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches;
+  if (isMobile) return null;
 
   useEffect(() => {
     const move = (e) => setPos({ x: e.clientX, y: e.clientY });
