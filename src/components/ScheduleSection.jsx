@@ -6,7 +6,7 @@ const events = [
   { time: "6:45 PM", title: "Toasts & Cake", desc: "Heartfelt speeches from family and friends, closing with the graduate. Cake is cut immediately after." },
   { time: "7:15 PM", title: "Dessert & Late Bites", desc: "Cake circulates and a light snack spread goes out as guests transition out of dinner mode." },
   { time: "7:30 PM", title: "Dancing Opens", desc: "Music shifts energy and floor opens for the rest of the night." },
-  { time: "9:45 PM", title: "Last Song & Send-Off", desc: "A big closer gets everyone on the floor one final time, followed by a warm thank-you from the graduate." },
+  { time: "9:45 PM", title: "Send-Off", desc: "Everyone gets on the floor one final time." },
   { time: "10:00 PM", title: "Farewell", desc: "The evening draws to a close. Safe travels home!", },
 ];
 
