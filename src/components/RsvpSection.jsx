@@ -4,6 +4,7 @@ import { rsvpAPI } from "@/api/firestore";
 
 export default function RsvpSection() {
   const [form, setForm] = useState({ name: "", email: "", guests: "1", dietary: "", location: "", message: "" });
+  const [plusOneNames, setPlusOneNames] = useState(/** @type {string[]} */ ([]));
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -30,6 +31,7 @@ export default function RsvpSection() {
       name: form.name,
       email: form.email,
       guests: parseInt(form.guests) || 1,
+      plusOneNames: plusOneNames.filter(Boolean),
       dietary: form.dietary,
       location: form.location,
       message: form.message,
@@ -131,15 +133,23 @@ export default function RsvpSection() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div>
-                  <label style={labelStyle}>Number of Guests</label>
+                  <label style={labelStyle}>Attending</label>
                   <select
                     style={{ ...inputStyle, cursor: "pointer" }}
                     value={form.guests}
-                    onChange={(e) => setForm({ ...form, guests: e.target.value })}
+                    onChange={(e) => {
+                      const count = parseInt(e.target.value);
+                      setForm({ ...form, guests: e.target.value });
+                      setPlusOneNames((prev) => {
+                        const next = [...prev];
+                        next.length = count - 1;
+                        return next.fill("", prev.length, count - 1);
+                      });
+                    }}
                   >
-                    {[1, 2, 3, 4].map((n) => (
-                      <option key={n} value={n} style={{ backgroundColor: "#0A0A0B", color: "#F2EFE9" }}>
-                        {n} {n === 1 ? "Guest" : "Guests"}
+                    {[["1", "Just Me"], ["2", "Me + 1"], ["3", "Me + 2"], ["4", "Me + 3"]].map(([val, label]) => (
+                      <option key={val} value={val} style={{ backgroundColor: "#0A0A0B", color: "#F2EFE9" }}>
+                        {label}
                       </option>
                     ))}
                   </select>
@@ -154,6 +164,26 @@ export default function RsvpSection() {
                   />
                 </div>
               </div>
+
+              {plusOneNames.length > 0 && (
+                <div className="space-y-10">
+                  {plusOneNames.map((name, i) => (
+                    <div key={i}>
+                      <label style={labelStyle}>Guest {i + 2} Name</label>
+                      <input
+                        style={inputStyle}
+                        placeholder={`Plus one name`}
+                        value={name}
+                        onChange={(e) => {
+                          const next = [...plusOneNames];
+                          next[i] = e.target.value;
+                          setPlusOneNames(next);
+                        }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
 
               <div>
                 <label style={labelStyle}>Where are you coming from?</label>

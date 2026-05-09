@@ -20,7 +20,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative w-full h-screen overflow-hidden flex items-center justify-center"
+      className="relative w-full h-screen overflow-hidden flex flex-col"
     >
       {/* Background image */}
       <div
@@ -42,6 +42,7 @@ export default function HeroSection() {
       />
 
       {/* Content */}
+      <div className="flex-1 flex items-center justify-center">
       <div className="relative z-10 text-center px-8 max-w-4xl">
         <p
           className="font-sans text-brass tracking-[0.4em] text-xs uppercase mb-8"
@@ -84,12 +85,42 @@ export default function HeroSection() {
         </p>
 
         <CountdownTimer />
+
+        <div className="mt-10">
+          <a
+            href="#rsvp"
+            data-cursor-expand
+            style={{
+              background: "transparent",
+              border: "0.5px solid #CBA35C",
+              color: "#CBA35C",
+              fontFamily: "'Montserrat', sans-serif",
+              fontSize: "11px",
+              letterSpacing: "0.3em",
+              textTransform: "uppercase",
+              padding: "14px 36px",
+              display: "inline-block",
+              transition: "all 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "#CBA35C";
+              e.currentTarget.style.color = "#0A0A0B";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "transparent";
+              e.currentTarget.style.color = "#CBA35C";
+            }}
+          >
+            RSVP Now
+          </a>
+        </div>
+      </div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
+      <div className="relative z-10 flex flex-col items-center gap-3 pb-12">
         <span className="font-sans text-parchment/40 tracking-[0.25em] text-[10px] uppercase">
-          Scroll to Attend
+          Or Scroll
         </span>
         <div className="pulse-slow">
           <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
