@@ -45,7 +45,7 @@ export default function DressCodeSection() {
           >
             Cocktail
             <br />
-            <em style={{ color: "#CBA35C" }}>Attire</em>
+            {/* <em style={{ color: "#CBA35C" }}>Attire</em> */}
           </h2>
 
           <div style={{ width: "40px", height: "0.5px", backgroundColor: "#CBA35C", marginBottom: "32px" }} />
@@ -54,7 +54,7 @@ export default function DressCodeSection() {
             className="font-sans text-parchment/60 text-sm mb-12"
             style={{ lineHeight: "1.9" }}
           >
-            We invite our guests to celebrate this momentous occassion with us on a warm spring evening. We recommend cocktail attire 
+            As we invite our guests to celebrate this momentous occassion with us, we recommend cocktail attire 
             for an evening of fun and celebration.
           </p>
 
@@ -73,7 +73,7 @@ export default function DressCodeSection() {
               {
                 label: "Traditional Cultural Wear",
                 detail: "Habesha kemis, netela, kuta, or other traditional dress is warmly celebrated and equally honored. Guests are encouraged\
-                to wear cultural attire with pride.",
+                to wear any cultural attire with pride.",
               },
               {
                 label: "Palette Guidance",
