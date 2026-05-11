@@ -147,7 +147,7 @@ export default function RsvpSection() {
                       });
                     }}
                   >
-                    {[["1", "Just Me"], ["2", "Me + 1"], ["3", "Me + 2"], ["4", "Me + 3"]].map(([val, label]) => (
+                    {[["1", "Just Me"], ["2", "Me + 1"], ["3", "Me + 2"], ["4", "Me + 3"], ["5", "Me + 4"]].map(([val, label]) => (
                       <option key={val} value={val} style={{ backgroundColor: "#0A0A0B", color: "#F2EFE9" }}>
                         {label}
                       </option>
