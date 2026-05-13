@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { auth, db } from "@/lib/firebase";
-import { signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
+import { signInWithRedirect, getRedirectResult, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { rsvpAPI } from "@/api/firestore";
 import CustomCursor from "@/components/CustomCursor";
+import { Dialog, DialogContent, DialogOverlay, DialogPortal } from "@/components/ui/dialog";
 
 const provider = new GoogleAuthProvider();
 
@@ -42,8 +43,11 @@ export default function Admin() {
   const [editForm, setEditForm] = useState(/** @type {Record<string, string>} */ ({}));
   const [deletingId, setDeletingId] = useState(/** @type {string | null} */ (null));
   const [saving, setSaving] = useState(false);
+  const [guestListRsvp, setGuestListRsvp] = useState(/** @type {Record<string, any> | null} */ (null));
 
   useEffect(() => {
+    getRedirectResult(auth).catch((err) => console.error("Redirect result error:", err));
+
     const unsub = onAuthStateChanged(auth, async (firebaseUser) => {
       setUser(firebaseUser);
       try {
@@ -69,13 +73,9 @@ export default function Admin() {
     return unsub;
   }, []);
 
-  const handleSignIn = async () => {
+  const handleSignIn = () => {
     setSigningIn(true);
-    try {
-      await signInWithPopup(auth, provider);
-    } finally {
-      setSigningIn(false);
-    }
+    signInWithRedirect(auth, provider);
   };
 
   const handleSignOut = async () => {
@@ -305,9 +305,13 @@ export default function Admin() {
                         ))}
                       </select>
                     ) : (
-                      <span style={{ display: "inline-block", border: "0.5px solid rgba(203,163,92,0.4)", color: "#CBA35C", fontSize: "11px", padding: "2px 10px", letterSpacing: "0.1em" }}>
+                      <button
+                        onClick={() => setGuestListRsvp(rsvp)}
+                        style={{ display: "inline-block", border: "0.5px solid rgba(203,163,92,0.4)", color: "#CBA35C", fontSize: "11px", padding: "2px 10px", letterSpacing: "0.1em", background: "transparent", cursor: "pointer" }}
+                        title="View guest list"
+                      >
                         {rsvp.guests || 1}
-                      </span>
+                      </button>
                     )}
                   </div>
 
@@ -390,6 +394,41 @@ export default function Admin() {
           )}
         </div>
       </div>
+
+      {/* Guest list dialog */}
+      {guestListRsvp && (
+        <Dialog open onOpenChange={(open) => { if (!open) setGuestListRsvp(null); }}>
+          <DialogPortal>
+            <DialogOverlay />
+            <div
+              style={{
+                position: "fixed", left: "50%", top: "50%", transform: "translate(-50%, -50%)",
+                zIndex: 50, backgroundColor: "#0A0A0B", border: "0.5px solid rgba(203,163,92,0.3)",
+                padding: "40px", minWidth: "280px", maxWidth: "400px", width: "90vw",
+              }}
+            >
+              <p style={{ color: "rgba(203,163,92,0.6)", fontSize: "9px", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: "20px" }}>
+                Guest List
+              </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+                {[guestListRsvp.name, ...(guestListRsvp.plusOneNames || [])].filter(Boolean).map((name, i) => (
+                  <div key={i} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                    <span style={{ color: "rgba(203,163,92,0.35)", fontSize: "10px", letterSpacing: "0.1em", minWidth: "16px" }}>{i + 1}</span>
+                    <span style={{ color: i === 0 ? "#F2EFE9" : "rgba(242,239,233,0.6)", fontSize: "13px", letterSpacing: "0.03em" }}>{name}</span>
+                    {i === 0 && <span style={{ color: "rgba(203,163,92,0.4)", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase" }}>Primary</span>}
+                  </div>
+                ))}
+              </div>
+              <button
+                onClick={() => setGuestListRsvp(null)}
+                style={{ marginTop: "28px", background: "transparent", border: "none", color: "rgba(242,239,233,0.3)", fontFamily: "'Montserrat', sans-serif", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", cursor: "pointer", padding: 0 }}
+              >
+                Close
+              </button>
+            </div>
+          </DialogPortal>
+        </Dialog>
+      )}
     </div>
   );
 }
