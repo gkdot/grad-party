@@ -1,12 +1,9 @@
 import { useState, useEffect } from "react";
-import { auth, db } from "@/lib/firebase";
-import { signInWithRedirect, getRedirectResult, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
 import { rsvpAPI } from "@/api/firestore";
 import CustomCursor from "@/components/CustomCursor";
-import { Dialog, DialogContent, DialogOverlay, DialogPortal } from "@/components/ui/dialog";
+import { Dialog, DialogOverlay, DialogPortal } from "@/components/ui/dialog";
 
-const provider = new GoogleAuthProvider();
+const SESSION_KEY = "admin_auth";
 
 const actionBtn = (/** @type {string} */ color) => ({
   background: "transparent",
@@ -34,54 +31,53 @@ const inlineInput = {
 };
 
 export default function Admin() {
-  const [user, setUser] = useState(/** @type {import('firebase/auth').User | null} */ (null));
+  const [authenticated, setAuthenticated] = useState(false);
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
   const [rsvps, setRsvps] = useState(/** @type {Record<string, any>[]} */ ([]));
-  const [loading, setLoading] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [signingIn, setSigningIn] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [editingId, setEditingId] = useState(/** @type {string | null} */ (null));
   const [editForm, setEditForm] = useState(/** @type {Record<string, string>} */ ({}));
   const [deletingId, setDeletingId] = useState(/** @type {string | null} */ (null));
   const [saving, setSaving] = useState(false);
   const [guestListRsvp, setGuestListRsvp] = useState(/** @type {Record<string, any> | null} */ (null));
 
-  useEffect(() => {
-    getRedirectResult(auth).catch((err) => console.error("Redirect result error:", err));
-
-    const unsub = onAuthStateChanged(auth, async (firebaseUser) => {
-      setUser(firebaseUser);
-      try {
-        if (firebaseUser) {
-          const adminDoc = await getDoc(doc(db, "admins", firebaseUser.uid));
-          if (adminDoc.exists()) {
-            setIsAdmin(true);
-            const data = await rsvpAPI.list();
-            setRsvps(data);
-          } else {
-            setIsAdmin(false);
-          }
-        } else {
-          setIsAdmin(false);
-        }
-      } catch (err) {
-        console.error("Admin init error:", err);
-        setIsAdmin(false);
-      } finally {
-        setLoading(false);
-      }
-    });
-    return unsub;
-  }, []);
-
-  const handleSignIn = () => {
-    setSigningIn(true);
-    signInWithRedirect(auth, provider);
+  const loadRsvps = async () => {
+    setLoading(true);
+    try {
+      const data = await rsvpAPI.list();
+      setRsvps(data);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleSignOut = async () => {
-    await signOut(auth);
+  useEffect(() => {
+    if (sessionStorage.getItem(SESSION_KEY) === "1") {
+      setAuthenticated(true);
+      loadRsvps();
+    }
+  }, []);
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    if (password === import.meta.env.VITE_ADMIN_PASSWORD) {
+      sessionStorage.setItem(SESSION_KEY, "1");
+      setAuthenticated(true);
+      setPasswordError(false);
+      loadRsvps();
+    } else {
+      setPasswordError(true);
+      setPassword("");
+    }
+  };
+
+  const handleSignOut = () => {
+    sessionStorage.removeItem(SESSION_KEY);
+    setAuthenticated(false);
     setRsvps([]);
-    setIsAdmin(false);
+    setPassword("");
+    setPasswordError(false);
   };
 
   const handleEdit = (/** @type {Record<string, any>} */ rsvp) => {
@@ -124,61 +120,77 @@ export default function Admin() {
 
   const totalGuests = rsvps.reduce((sum, r) => sum + (r.guests || 1), 0);
 
+  if (!authenticated) {
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#0A0A0B" }}>
+        <CustomCursor />
+        <form
+          onSubmit={handleSignIn}
+          className="text-center"
+          style={{ border: "0.5px solid rgba(203,163,92,0.3)", padding: "60px 80px" }}
+        >
+          <p style={{ color: "#CBA35C", letterSpacing: "0.35em", fontSize: "10px", textTransform: "uppercase", marginBottom: "32px" }}>
+            Admin
+          </p>
+          <div style={{ marginBottom: "8px" }}>
+            <input
+              type="password"
+              autoFocus
+              value={password}
+              onChange={(e) => { setPassword(e.target.value); setPasswordError(false); }}
+              placeholder="Password"
+              style={{
+                background: "transparent",
+                border: "none",
+                borderBottom: `0.5px solid ${passwordError ? "rgba(220,80,80,0.7)" : "rgba(203,163,92,0.4)"}`,
+                color: "#F2EFE9",
+                fontFamily: "'Montserrat', sans-serif",
+                fontSize: "13px",
+                letterSpacing: "0.15em",
+                outline: "none",
+                padding: "10px 0",
+                width: "200px",
+                textAlign: "center",
+                transition: "border-color 0.2s ease",
+              }}
+            />
+          </div>
+          {passwordError && (
+            <p style={{ color: "rgba(220,80,80,0.7)", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "16px" }}>
+              Incorrect password
+            </p>
+          )}
+          <div style={{ marginTop: passwordError ? "0" : "24px" }}>
+            <button
+              type="submit"
+              style={{
+                background: "transparent",
+                border: "0.5px solid #CBA35C",
+                color: "#CBA35C",
+                fontFamily: "'Montserrat', sans-serif",
+                fontSize: "11px",
+                letterSpacing: "0.3em",
+                textTransform: "uppercase",
+                padding: "14px 40px",
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#CBA35C"; e.currentTarget.style.color = "#0A0A0B"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#CBA35C"; }}
+            >
+              Enter
+            </button>
+          </div>
+        </form>
+      </div>
+    );
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#0A0A0B" }}>
         <CustomCursor />
         <div className="w-6 h-6 border border-brass rounded-full border-t-transparent animate-spin" style={{ borderColor: "#CBA35C", borderTopColor: "transparent" }} />
-      </div>
-    );
-  }
-
-  if (!user) {
-    return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#0A0A0B" }}>
-        <CustomCursor />
-        <div className="text-center" style={{ border: "0.5px solid rgba(203,163,92,0.3)", padding: "60px 80px" }}>
-          <p className="font-sans tracking-[0.35em] text-xs uppercase mb-8" style={{ color: "#CBA35C" }}>
-            Admin
-          </p>
-          <button
-            onClick={handleSignIn}
-            disabled={signingIn}
-            style={{
-              background: "transparent",
-              border: "0.5px solid #CBA35C",
-              color: "#CBA35C",
-              fontFamily: "'Montserrat', sans-serif",
-              fontSize: "11px",
-              letterSpacing: "0.3em",
-              textTransform: "uppercase",
-              padding: "16px 40px",
-              cursor: signingIn ? "not-allowed" : "pointer",
-              opacity: signingIn ? 0.5 : 1,
-              transition: "all 0.3s ease",
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#CBA35C"; e.currentTarget.style.color = "#0A0A0B"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#CBA35C"; }}
-          >
-            {signingIn ? "Signing in…" : "Sign in with Google"}
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  if (!isAdmin) {
-    return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#0A0A0B" }}>
-        <CustomCursor />
-        <div className="text-center" style={{ border: "0.5px solid rgba(203,163,92,0.3)", padding: "60px" }}>
-          <p className="font-sans text-parchment/40 tracking-[0.3em] text-xs uppercase mb-6">
-            Access Restricted
-          </p>
-          <button onClick={handleSignOut} style={actionBtn("rgba(203,163,92,0.4)")}>
-            Sign out
-          </button>
-        </div>
       </div>
     );
   }
