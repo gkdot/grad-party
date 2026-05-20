@@ -1,13 +1,53 @@
 import { useEffect, useRef } from "react";
 
 const events = [
-  { time: "4:00 PM", title: "Doors Open", desc: "Guests arrive, snack on appetizers, and mingle. A long, relaxed welcome." },
-  { time: "5:30 PM", title: "Dinner Served", desc: "Guests are seated and food is ready to serve. Accompanied by low, vibrant jazz." },
-  { time: "6:45 PM", title: "Toasts & Cake", desc: "Heartfelt speeches from family and friends, closing with the graduate. Cake is cut immediately after." },
-  { time: "7:15 PM", title: "Dessert & Late Bites", desc: "Cake circulates and a light snack spread goes out as guests transition out of dinner mode." },
-  { time: "7:30 PM", title: "Dancing Opens", desc: "Music shifts energy and floor opens for the rest of the night." },
-  { time: "9:45 PM", title: "Send-Off", desc: "Everyone gets on the floor one final time." },
-  { time: "10:00 PM", title: "Farewell", desc: "The evening draws to a close. Safe travels home!", },
+  { 
+    time: "4:00 PM", 
+    title: "Doors Open", 
+    desc: "Guests arrive, snack on appetizers, and mingle. A long, relaxed welcome." 
+  },
+
+  { 
+    time: "5:30 PM", 
+    title: "Dinner Served", 
+    desc: "Guests are seated and food is ready to serve. Accompanied by low, vibrant jazz." 
+  },
+
+  { 
+    time: "6:45 PM", 
+    title: "Toasts & Cake", 
+    desc: "Heartfelt speeches from family and friends, closing with the graduate. Cake is cut immediately after." 
+  },
+
+  { 
+    time: "7:15 PM", 
+    title: "Traditional Ethiopian Coffee Ceremony", 
+    desc: "Fresh coffee is roasted, brewed, and served in a traditional jebena ceremony with incense and conversation. Guests relax, reconnect, and transition into the evening celebration." 
+  },
+
+  { 
+    time: "7:50 PM", 
+    title: "Dessert & Late Bites", 
+    desc: "Cake circulates alongside coffee and a light snack spread as guests ease out of dinner mode." 
+  },
+
+  { 
+    time: "8:05 PM", 
+    title: "Dancing Opens", 
+    desc: "Music shifts energy and the dance floor opens for the rest of the night." 
+  },
+
+  { 
+    time: "9:45 PM", 
+    title: "Send-Off", 
+    desc: "Everyone gets on the floor one final time." 
+  },
+
+  { 
+    time: "10:00 PM", 
+    title: "Farewell", 
+    desc: "The evening draws to a close. Safe travels home!" 
+  },
 ];
 
 export default function ScheduleSection() {

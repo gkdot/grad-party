@@ -2,24 +2,42 @@ import { useEffect, useRef } from "react";
 
 const courses = [
   {
-    course: "Cocktail Hour",
-    title: "Passed Bites",
-    items: ["Sambusa, spiced lentil & herb filling", "Tibs skewer, awaze dipping sauce", "Fig & honey crostini, whipped feta", "Injera blini, berbere-spiced tomato"],
+    course: "To Start",
+    title: "Starters",
+    items: [
+      "Salad",
+      "ሳምቡሳ (Sambusa) — spiced lentil pastry",
+      "አይብ (Ayib) — homemade cheese",
+    ],
   },
   {
-    course: "Dinner",
-    title: "The Entrée",
-    items: ["Spiced lamb tibs, herb jus", "Pan-seared salmon, niter kibbeh & capers", "Misir wot, red lentil & berbere (vegetarian)", "Roasted fingerling potatoes, spiced herb butter"],
+    course: "Mains",
+    title: "From the Homeland",
+    items: [
+      "ዶሮ ወጥ (Doro Wat) — spiced chicken stew",
+      "ስጋ ወጥ (Siga Wat) — spiced beef stew",
+      "አልጫ ወጥ (Alicha Wat) — mild beef with turmeric",
+      "ጥብስ (Tibs) — roasted beef",
+      "ክትፎ (Kitfo) — ground beef with spiced butter",
+      "ጥሬ ስጋ (Tire Siga) — raw beef (if available)",
+    ],
   },
   {
-    course: "Dessert",
-    title: "Sweet Conclusion",
-    items: ["Honey cake, cardamom cream", "Crème brûlée, Ethiopian coffee essence", "Baklava & spiced petit fours", "Seasonal fruit arrangement, rose water"],
+    course: "Also Served",
+    title: "Additional Dishes",
+    items: [
+      "Rice with chicken",
+      "Lasagna (×2)",
+    ],
   },
   {
-    course: "Beverages",
-    title: "The Bar",
-    items: ["Signature tej welcome toast on arrival", "Curated wine selection: red, white & rosé", "Craft cocktails & spirit service", "Still & sparkling water, Ethiopian coffee service"],
+    course: "Accompaniments",
+    title: "On the Side",
+    items: [
+      "ጎመን (Gomen) — cooked collard greens",
+      "እንጀራ (Injera) — Ethiopian flatbread",
+      "ዳቦ (Dabo) — bread",
+    ],
   },
 ];
 
