@@ -21,8 +21,8 @@ const events = [
 
   { 
     time: "7:15 PM", 
-    title: "Traditional Ethiopian Coffee Ceremony", 
-    desc: "Fresh coffee is roasted, brewed, and served in a traditional jebena ceremony with incense and conversation. Guests relax, reconnect, and transition into the evening celebration." 
+    title: "Coffee Ceremony", 
+    desc: "Fresh coffee is roasted, brewed, and served in a traditional Ethiopian jebena ceremony with incense and conversation. Guests relax, reconnect, and transition into the evening celebration." 
   },
 
   { 
